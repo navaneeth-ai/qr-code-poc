@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code POC</title>
+
+    <script
+      src="https://unpkg.com/html5-qrcode"
+      type="text/javascript"
+    ></script>
+  </head>
+
+  <body>
+    <div id="reader" width="640px" height="640px"></div>
+
+    <script>
+      function handleScanSuccess(text, result) {
+        alert("Success:", text, JSON.stringify(result, undefined, 2));
+      }
+
+      function handleScanError(error) {
+        alert("Error:", error);
+      }
+
+      const scanner = new Html5QrcodeScanner("reader", {
+        fps: 10,
+        qrbox: { width: 320, height: 320 },
+      });
+
+      scanner.render(handleScanSuccess, handleScanError);
+    </script>
+  </body>
+</html>
