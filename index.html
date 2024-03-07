@@ -9,23 +9,45 @@
       src="https://unpkg.com/html5-qrcode"
       type="text/javascript"
     ></script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      .container {
+        display: grid;
+        place-items: center;
+      }
+
+      .reader {
+        max-width: 600px;
+        max-height: 600px;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
   </head>
 
   <body>
-    <div id="reader" width="640px" height="640px"></div>
+    <div class="container">
+      <div id="reader" class="reader"></div>
+    </div>
 
     <script>
       function handleScanSuccess(text, result) {
-        alert("Success:", text, JSON.stringify(result, undefined, 2));
+        alert(text);
       }
 
       function handleScanError(error) {
-        alert("Error:", error);
+        console.error(error);
       }
 
       const scanner = new Html5QrcodeScanner("reader", {
         fps: 10,
-        qrbox: { width: 320, height: 320 },
+        qrbox: { width: 300, height: 300 },
       });
 
       scanner.render(handleScanSuccess, handleScanError);
