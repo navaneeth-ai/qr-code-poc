@@ -6,104 +6,36 @@
     <title>QR Code POC</title>
 
     <style>
-      * {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
       }
 
-      .container {
+      body {
         min-height: 100vh;
         display: grid;
         place-content: center;
-        place-items: center;
         row-gap: 0.25rem;
-        position: relative;
       }
 
-      .reader {
-        max-width: 600px;
-        width: 100vw;
-        aspect-ratio: 4 / 3;
-        background-color: black;
-      }
-
-      .button {
-        max-width: 600px;
-        width: 100vw;
+      .link {
+        width: 20rem;
+        background-color: midnightblue;
         color: white;
+        display: inline-block;
         font-family: sans-serif;
-        font-weight: bold;
-        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
         padding: 0.5rem;
-        border: none;
-        border-radius: 0.25rem;
-        cursor: pointer;
-      }
-
-      .button#start-button {
-        background-color: seagreen;
-      }
-
-      .button#stop-button {
-        background-color: indianred;
       }
     </style>
   </head>
 
   <body>
-    <div class="container">
-      <div id="reader" class="reader"></div>
-      <button id="start-button" class="button">Start</button>
-      <button id="stop-button" class="button">Stop</button>
-    </div>
-
-    <script
-      src="https://unpkg.com/html5-qrcode"
-      type="text/javascript"
-    ></script>
-
-    <script>
-      const qrCode = new Html5Qrcode("reader", { verbose: true });
-
-      function handleScanSuccess(text, result) {
-        console.log(text, result);
-        alert(text);
-        stopScan();
-      }
-
-      function handleScanError(error) {
-        console.error(error);
-      }
-
-      function startScan() {
-        const state = qrCode.getState();
-        if (state === 2) return;
-
-        qrCode.start(
-          { facingMode: "environment" },
-          {
-            fps: 10,
-            qrbox: { width: 300, height: 300 },
-          },
-          handleScanSuccess,
-          handleScanError
-        );
-      }
-
-      function stopScan() {
-        const state = qrCode.getState();
-        if (state === 1) return;
-
-        qrCode.stop().then(console.log).catch(console.error);
-      }
-
-      document
-        .querySelector("#start-button")
-        .addEventListener("click", startScan);
-      document
-        .querySelector("#stop-button")
-        .addEventListener("click", stopScan);
-    </script>
+    <a href="/default-ui.html" class="link">Default UI</a>
+    <a href="/custom-ui.html" class="link">Custom UI</a>
   </body>
 </html>
