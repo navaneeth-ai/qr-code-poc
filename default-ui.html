@@ -4,14 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Default UI - QR Code POC</title>
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        position: relative;
+      }
+
+      .back-button {
+        position: absolute;
+        top: 0.25rem;
+        left: 0.25rem;
+        background-color: midnightblue;
+        color: white;
+        font-family: sans-serif;
+        font-size: 0.875rem;
+        text-decoration: none;
+        padding: 0.25rem 0.375rem;
+        border-radius: 0.25rem;
+      }
+
+      .container {
+        display: grid;
+        place-content: center;
+      }
+
+      .reader {
+        max-width: 600px;
+        width: 100vw;
+        aspect-ratio: 4 / 3;
+      }
+    </style>
   </head>
 
   <body>
-    <div style="display: grid; place-content: center">
-      <div
-        id="reader"
-        style="max-width: 600px; width: 100vw; aspect-ratio: 4 / 3"
-      ></div>
+    <a href="/" class="back-button">Go back</a>
+
+    <div class="container">
+      <div id="reader" class="reader"></div>
     </div>
 
     <script
