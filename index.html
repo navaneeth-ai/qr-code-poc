@@ -64,16 +64,17 @@
     ></script>
 
     <script>
+      const qrCode = new Html5Qrcode("reader", { verbose: true });
+
       function handleScanSuccess(text, result) {
         console.log(text, result);
         alert(text);
+        stopScan();
       }
 
       function handleScanError(error) {
         console.error(error);
       }
-
-      const qrCode = new Html5Qrcode("reader", { verbose: true });
 
       function startScan() {
         const state = qrCode.getState();
